@@ -52,6 +52,54 @@ class TrabajosSeeder extends Seeder
                 'user_id' => '3',
                 'duration' => '23',
                 'created_at' => Carbon::now()
+            ),
+            array(
+                'name' => 'Planeación',
+                'user_id' => '3',
+                'duration' => '24',
+                'created_at' => Carbon::now()->addMonth()
+            ),
+            array(
+                'name' => 'Derivación',
+                'user_id' => '3',
+                'duration' => '35',
+                'created_at' => Carbon::now()->addMonth()
+            ),
+            array(
+                'name' => 'Planeación',
+                'user_id' => '3',
+                'duration' => '24',
+                'created_at' => Carbon::now()->subMonth()
+            ),
+            array(
+                'name' => 'Derivación',
+                'user_id' => '3',
+                'duration' => '35',
+                'created_at' => Carbon::now()->subMonth()
+            ),
+            array(
+                'name' => 'Planeación',
+                'user_id' => '2',
+                'duration' => '24',
+                'created_at' => Carbon::now()->addMonth()
+            ),
+            array(
+                'name' => 'Archivación de documentos',
+                'user_id' => '2',
+                'duration' => '35',
+                'created_at' => Carbon::now()->addMonth()
+            ),
+            array(
+                'name' => 'Pensiones',
+                'user_id' => '2',
+                'duration' => '24',
+                'created_at' => Carbon::now()->subMonth()
+            ),
+            array(
+                'name' => 'Hipotecas',
+                'user_id' => '2',
+                'duration' => '35',
+                'created_at' => Carbon::now()->subMonth()
             )
         ]);
 

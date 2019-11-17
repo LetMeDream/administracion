@@ -16,7 +16,23 @@ class Trabajo extends Model
     // Mutators are love, mutators are life.
     public function setPriceAttribute($value)
     {
-        $this->attributes['total'] = $this->attributes['duration']*$value;
         $this->attributes['price'] = $value;
+        if($this->attributes['price'] == 0 ){
+
+            $this->attributes['total'] = null;
+
+        } else{
+
+            $this->attributes['total'] = $this->attributes['duration']*$value;
+
+        }
+
+    }
+
+    // Accesors are love, accesors are life.
+    public function getCreatedAtAttribute($value){
+
+        return substr($value, 0, -9);
+
     }
 }

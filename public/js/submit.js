@@ -11,5 +11,14 @@ $(document).ready(function(){
 
     });
 
+    $(document).on('change', '#mySelect', function(){
+
+        let select = $(this);
+
+        let form = select.parent();
+        form.submit();
+
+    });
+
 
 });
