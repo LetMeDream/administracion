@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    Bienvenido a su cuenta
+                    @if (auth()->user()->isAdmin == 1) Bienvenido a su cuenta de <b>Administrador</b>, {{ auth()->user()->name }} @endif
+                    @if (auth()->user()->isAdmin != 1) Bienvenido a su cuenta de <b>usuario</b>, {{ auth()->user()->name }} @endif
+
+
+
                 </div>
             </div>
         </div>
