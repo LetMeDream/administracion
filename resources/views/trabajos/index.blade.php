@@ -13,7 +13,7 @@
                                 <table class="table">
                                         <thead>
                                           <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col">Fecha</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Duración</th>
                                             <th scope="col">Precio</th>
@@ -21,13 +21,23 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($trabajos as $trabajo)
+                                            @foreach ($trabajos->sortBy('created_at') as $trabajo)
                                             <tr>
-                                                <th scope="row">{{$trabajo->id}}</th>
-                                                <th>{{$trabajo->name}}</th>
+                                                <th scope="row">{{$trabajo->created_at}}</th>
+                                                <th>
+                                                    <a href='/trabajos/{{$trabajo->id}}'>{{$trabajo->name}}</a>
+                                                </th>
                                                 <th>{{$trabajo->duration}}</th>
-                                                <th>{{$trabajo->price}}</th>
-                                                <th>{{$trabajo->total}}</th>
+                                                <th>
+                                                    @if ($trabajo->price != null)
+                                                        {{$trabajo->price}}
+                                                    @endif
+                                                </th>
+                                                <th>
+                                                    @if ($trabajo->total != null)
+                                                        {{$trabajo->total}}
+                                                    @endif
+                                                </th>
                                             </tr>
                                             @endforeach
                                         </tbody>

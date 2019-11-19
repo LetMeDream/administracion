@@ -53,11 +53,11 @@
                                             @csrf
                                             <label for='month'>Filtrar por</label>
                                             <select name='month' id='mySelect' class='form-control d-inline'>
-                                                <option value=''> Elija un mes </option>
+                                                
                                                 @foreach ($meses as $mesKey => $mesValue)
 
 
-                                                        <option value='{{$mesValue}}'>
+                                                        <option value="{{$mesValue}}" @if(($mes ?? '') == $mesValue) selected @endif>
                                                              {{$mesKey}}
                                                         </option>
 
@@ -88,18 +88,21 @@
                                             <td>{{$trabajo->created_at}}</td>
                                             <td>{{$trabajo->name}}</td>
                                             <td>{{$trabajo->duration}}</td>
-                                            <td>
+                                            <td class='valores'>
                                                 @if ($trabajo->price == null)
                                                     <form action='/setPrice/{{$trabajo->id}}' method='POST'>
                                                         @csrf
                                                         <input name='price' id='price' class='form-control' type='number' class='myInput'>
                                                         {{-- <input type="submit" id="submit-form" hidden /> --}}
                                                     </form>
-                                                @else
-                                                    {{$trabajo->price}}
+                                                @else                                                    
+                                                        {{$trabajo->price}}                                                    
                                                 @endif
                                             </td>
-                                            <td>{{$trabajo->total}}</td>
+                                            <td>
+                                                <div class='sumandos' valor='{{$trabajo->total}}'>
+                                                    {{$trabajo->total}}
+                                                </div></td>
                                             <td>
                                                 @if ($trabajo->price == null)
                                                     <label class='btn btn-secondary myLabel' {{-- for="submit-form" --}} tabindex="0">Fijar precio</label>
@@ -114,6 +117,25 @@
                                         </tr>
 
                                     @endforeach
+
+                                        <tr>
+                                            <th>
+                                                <h5>
+                                                    <b>Resultado Total</b>
+                                                </h5>
+                                            </th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>
+                                                <div class='sumTotal'>
+
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <button id='sumar' class='btn btn-secondary'>Sumar total</button>
+                                            </th>
+                                        </tr>
                                 </tbody>
                             </table>
 

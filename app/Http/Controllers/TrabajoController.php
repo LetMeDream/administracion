@@ -69,9 +69,14 @@ class TrabajoController extends Controller
      * @param  \App\Trabajo  $trabajo
      * @return \Illuminate\Http\Response
      */
+    /** We shouldn't need to get the selected Model by id since we will be using *
+    *   Route model binding                                                                         */
     public function show(Trabajo $trabajo)
     {
-        //
+    //   dd($trabajo);
+
+        return view('trabajos.show', compact('trabajo'));
+
     }
 
     /**
@@ -83,6 +88,9 @@ class TrabajoController extends Controller
     public function edit(Trabajo $trabajo)
     {
         //
+
+        return view('trabajos.edit', compact('trabajo'));
+
     }
 
     /**
@@ -95,6 +103,12 @@ class TrabajoController extends Controller
     public function update(Request $request, Trabajo $trabajo)
     {
         //
+        $trabajo->name = $request->name;
+        $trabajo->duration = $request->duration;
+
+        $trabajo->save();
+
+        return redirect('trabajos/'.$trabajo->id)->with('edit', 'Trabajo editado con éxito');
     }
 
     /**
@@ -105,6 +119,10 @@ class TrabajoController extends Controller
      */
     public function destroy(Trabajo $trabajo)
     {
-        //
+        //dd($trabajo);
+        
+        $trabajo->destroy($trabajo->id);
+
+        return redirect('/trabajos');
     }
 }

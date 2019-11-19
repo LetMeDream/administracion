@@ -28,6 +28,17 @@ class Trabajo extends Model
         }
 
     }
+    // Mutators are love; Here we set a mutator so it performs de ['total'] calculation when setting ['duration'], but only
+    /* if ['price'] has been previously set.                                                                                */
+    public function setDurationAttribute($value){
+
+        $this->attributes['duration'] = $value;
+
+        if(isset($this->attributes['price'])){
+            $this->attributes['total'] = $this->attributes['price']*$value;
+        }
+
+    }
 
     // Accesors are love, accesors are life.
     public function getCreatedAtAttribute($value){

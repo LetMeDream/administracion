@@ -76,21 +76,25 @@ class AdminController extends Controller
     public function filter(Request $request, User $usuario){
 
         /* $d['month']; */ //11
-        $meses = ['Enero' => '01', 'Febrero' => '02', 'Marzo' =>'03', 'Abril' =>'04', 'Mayo' =>'05', 'Junio' =>'06', 'Julio' =>'07', 'Agosto' =>'08', 'Septiembre' =>'09', 'Octubre' =>'10', 'Noviembre' =>'11', 'Diciembre'=>'12'];
-        $x = $request->month;
+        $meses = ['Elije un mes'=>'00','Enero' => '01', 'Febrero' => '02', 'Marzo' =>'03', 'Abril' =>'04', 'Mayo' =>'05', 'Junio' =>'06', 'Julio' =>'07', 'Agosto' =>'08', 'Septiembre' =>'09', 'Octubre' =>'10', 'Noviembre' =>'11', 'Diciembre'=>'12'];
+        $mes = $request->month;
 
         $trabajos = $usuario->trabajos; // Collection returned
         $now = Carbon::now();
-
-        $filtered_trabajos = $trabajos->filter(function($trabajo) use ($x, $now) {
+        if($mes != '00'){
+            $filtered_trabajos = $trabajos->filter(function($trabajo) use ($mes, $now) {
                 $date = $trabajo->created_at;
 
                 $d = date_parse_from_format('Y-m-d', $date);
 
-                return (($d['month'] == $x) && ($now->year == $d['year'] ));
-        });
+                return (($d['month'] == $mes) && ($now->year == $d['year'] ));
+            });
+        } else {
+            $filtered_trabajos = $trabajos;
+        }
+            
 
-        return view('admin.detalles', ['usuario' => $usuario,'trabajos' => $filtered_trabajos , 'meses' => $meses ]);
+        return view('admin.detalles', ['usuario' => $usuario,'trabajos' => $filtered_trabajos , 'meses' => $meses, 'mes' => $mes ]);
 
     }
 }
