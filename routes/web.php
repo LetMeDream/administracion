@@ -38,5 +38,8 @@ Route::get('/usuarios/{usuario}/trabajo/{trabajo}/edit', 'AdminController@editJo
 /** Patching it */
 Route::patch('/usuarios/{usuario}/trabajo/{trabajo}', 'AdminController@updateJob');
 
-/** Failing at filter */
+/** Filtering */
 Route::get('/usuarios/{usuario}/filtro', 'AdminController@filter');
+
+/** Failing at pdf */
+Route::get('/usuarios/{usuario}/pdf','AdminController@export_pdf');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Trabajo;
 use Carbon\Carbon;
+use PDF;
+use Session;
 
 class AdminController extends Controller
 {
@@ -71,8 +73,7 @@ class AdminController extends Controller
 
     }
 
-
-    /** Failing at filter */
+    /** Filtering */
     public function filter(Request $request, User $usuario){
 
         /* $d['month']; */ //11
@@ -92,9 +93,26 @@ class AdminController extends Controller
         } else {
             $filtered_trabajos = $trabajos;
         }
-            
+
+        /** Let's pass this variable to the 'export_pdf' method */
+        Session::put('filtrados', $filtered_trabajos);
+        /** supossedly done */
 
         return view('admin.detalles', ['usuario' => $usuario,'trabajos' => $filtered_trabajos , 'meses' => $meses, 'mes' => $mes ]);
+
+    }
+
+    public function export_pdf( User $usuario){
+        set_time_limit(300);
+        $meses = ['Enero' => '01', 'Febrero' => '02', 'Marzo' =>'03', 'Abril' =>'04', 'Mayo' =>'05', 'Junio' =>'06', 'Julio' =>'07', 'Agosto' =>'08', 'Septiembre' =>'09', 'Octubre' =>'10', 'Noviembre' =>'11', 'Diciembre'=>'12'];
+
+        $trabajos = Session::get('filtrados');
+
+        $pdf = PDF::loadView('admin.pdf', compact('usuario', 'trabajos' ,'meses'))->setPaper('a4', 'portrait');
+
+        $fileName = $usuario->name;
+
+        return $pdf->download($fileName . '.pdf');
 
     }
 }

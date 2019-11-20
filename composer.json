@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "andrey-helldar/laravel-app": "^1.0",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",

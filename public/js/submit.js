@@ -22,7 +22,7 @@ $(document).ready(function(){
     });
 
     /** Sumando columnas */
-    $(document).on('click', '#sumar', function(){
+    $(document).on('click', '#sumar, .pdf', function(){
 
         let valoresAsignados = true;
         let sumandos = $('.sumandos');
@@ -54,9 +54,10 @@ $(document).ready(function(){
         console.log(resultado);
         if(valoresAsignados != false){
             $('.sumTotal').html(resultado);
+
         }
-        
-        
+
+
 
     });
 

@@ -15,6 +15,9 @@
        left:40px;
        font-size:12px;s
     }
+  /*   .pdf{
+        display:none !important;
+    } */
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/submit.js') }}"></script>
@@ -53,7 +56,7 @@
                                             @csrf
                                             <label for='month'>Filtrar por</label>
                                             <select name='month' id='mySelect' class='form-control d-inline'>
-                                                
+
                                                 @foreach ($meses as $mesKey => $mesValue)
 
 
@@ -95,8 +98,8 @@
                                                         <input name='price' id='price' class='form-control' type='number' class='myInput'>
                                                         {{-- <input type="submit" id="submit-form" hidden /> --}}
                                                     </form>
-                                                @else                                                    
-                                                        {{$trabajo->price}}                                                    
+                                                @else
+                                                        {{$trabajo->price}}
                                                 @endif
                                             </td>
                                             <td>
@@ -105,7 +108,7 @@
                                                 </div></td>
                                             <td>
                                                 @if ($trabajo->price == null)
-                                                    <label class='btn btn-secondary myLabel' {{-- for="submit-form" --}} tabindex="0">Fijar precio</label>
+                                                    <label class='btn btn-secondary myLabel' tabindex="0">Fijar precio</label>
                                                 @else
                                                 <div style='position:relative;'>
                                                     <p> ¡Precio Asignado! </p>
@@ -135,6 +138,15 @@
                                             <th>
                                                 <button id='sumar' class='btn btn-secondary'>Sumar total</button>
                                             </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <a class='btn btn primary pdf' href='{{ url('usuarios/'. $usuario->id . '/pdf') }}'>Exportar a PDF</a>
+                                            </th>
+                                            <th></th>
+                                            <th></th><th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                 </tbody>
                             </table>
