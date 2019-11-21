@@ -10,7 +10,7 @@
     <style>
         .pair{
             position:absolute;
-            left:90px;
+            left:100px;
         }
         .myTh{
             width:18%;
@@ -24,9 +24,16 @@
            left:40px;
            font-size:12px;s
         }
-        .table{
+        .table, .tableTitle{
             margin-top:30px;
             width:100%;
+        }
+        .thidBody{
+            position:relative !important;
+            margin-top:40px !important;
+        }
+        .tiny{
+            font-size: 10px;
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,18 +44,35 @@
         <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <div class="card">
 
-                            <div class="card-header">Trabajos para usuario: {{ $usuario->name}}</div>
-                            <div class="card-body">
 
-                                <table class='table table-bordered'>
-                                    <thead>
+
+                            <div class=" thisBody">
+                                {{-- <div class="row">
+                                    <h5 class='ml-2'>ID:</h5>  <p class='pair'>{{ $usuario->id}}</p>
+                                </div> --}}
+                                <div class="row">
+                                    <h5 class='ml-2'>&nbsp;Nombre:</h5>  <p class='pair'>{{ $usuario->name}}</p>
+                                </div>
+                                <div class="row">
+                                    <h5 class='ml-2'>&nbsp;Correo:</h5>  <p class='pair'>{{ $usuario->email}}</p>
+                                </div>
+
+
+
+
+                            </div>
+
+                           {{--  <div class="card-header">Trabajos para usuario: {{ $usuario->name}}</div> --}}
+
+
+                                <table class='table '>
+                                    <thead class='table-dark'>
                                         <tr>
                                             <th scope="col">Fecha</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Duración</th>
-                                            <th scope="col">Precio</th>
+                                            <th scope="col">Duración<br> <span class='tiny'>(horas)</span></th>
+                                            <th scope="col">Precio<br> <span class='tiny'>($/hora)</span></th>
                                             <th scope="col">Total</th>
                                             {{-- <th scope="col">Fijar precio</th> --}}
                                         </tr>
@@ -91,7 +115,7 @@
                                                 <th></th>
                                                 <th>
                                                     <div class='sumTotal'>
-
+                                                        {{ $total }}
                                                     </div>
                                                 </th>
 
@@ -101,9 +125,9 @@
                                 </table>
 
 
-                            </div>
 
-                        </div>
+
+
 
                     </div>
                 </div>

@@ -21,8 +21,10 @@ $(document).ready(function(){
 
     });
 
-    /** Sumando columnas */
-    $(document).on('click', '#sumar, .pdf', function(){
+    /** Sumando columnas
+     * Aunque ya esa funcionalidad no se usa.
+    */
+    $(document).on('click', '#sumar', function(){
 
         let valoresAsignados = true;
         let sumandos = $('.sumandos');

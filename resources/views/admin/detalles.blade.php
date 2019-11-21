@@ -132,16 +132,16 @@
                                             <th></th>
                                             <th>
                                                 <div class='sumTotal'>
-
+                                                    {{  $total  }}
                                                 </div>
                                             </th>
                                             <th>
-                                                <button id='sumar' class='btn btn-secondary'>Sumar total</button>
+                                                {{-- <button id='sumar' class='btn btn-secondary'>Sumar total</button> --}}
                                             </th>
                                         </tr>
                                         <tr>
                                             <th>
-                                                <a class='btn btn primary pdf' href='{{ url('usuarios/'. $usuario->id . '/pdf') }}'>Exportar a PDF</a>
+                                                <a class='btn btn-secondary pdf' href='{{ url('usuarios/'. $usuario->id . '/pdf') }}'>Exportar a PDF</a>
                                             </th>
                                             <th></th>
                                             <th></th><th></th>

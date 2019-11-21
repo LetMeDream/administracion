@@ -26,7 +26,22 @@ class AdminController extends Controller
 
         $trabajos = $usuario->trabajos;
 
-        return view('admin.detalles', compact('usuario', 'trabajos' ,'meses'));
+        $prices = $trabajos->pluck('total');
+        $total = 0;
+        $allNumbers = true;
+        foreach($prices as $price){
+            if(is_nan($price)){
+                // Acá no hagamos nada mejor
+            }else{
+                $total += $price;
+            }
+        }
+
+        /** Pasándole los trabajos del usuario al PDF */
+        Session::put('filtrados', $trabajos);
+        Session::put('total', $total);
+
+        return view('admin.detalles', compact('usuario', 'trabajos' ,'meses', 'total'));
 
     }
 
@@ -95,10 +110,29 @@ class AdminController extends Controller
         }
 
         /** Let's pass this variable to the 'export_pdf' method */
-        Session::put('filtrados', $filtered_trabajos);
+        if($filtered_trabajos){
+            Session::put('filtrados', $filtered_trabajos);
+        }
         /** supossedly done */
 
-        return view('admin.detalles', ['usuario' => $usuario,'trabajos' => $filtered_trabajos , 'meses' => $meses, 'mes' => $mes ]);
+        /** Avoiding to do the calculation with Jquery */
+        $prices = $filtered_trabajos->pluck('total');
+        $total = 0;
+        $allNumbers = true;
+        foreach($prices as $price){
+            if(is_nan($price)){
+                /** Acá no hagamos nada, mejor. */
+            }else{
+                $total += $price;
+            }
+        }
+
+        /* dd($allNumbers); */
+
+        Session::put('total', $total);
+        return view('admin.detalles', ['usuario' => $usuario,'trabajos' => $filtered_trabajos , 'meses' => $meses, 'mes' => $mes , 'total' => $total]);
+
+
 
     }
 
@@ -106,9 +140,11 @@ class AdminController extends Controller
         set_time_limit(300);
         $meses = ['Enero' => '01', 'Febrero' => '02', 'Marzo' =>'03', 'Abril' =>'04', 'Mayo' =>'05', 'Junio' =>'06', 'Julio' =>'07', 'Agosto' =>'08', 'Septiembre' =>'09', 'Octubre' =>'10', 'Noviembre' =>'11', 'Diciembre'=>'12'];
 
+        /** Obteniendo tareas filtradas por mes (en caso de haber sido filtradas) */
         $trabajos = Session::get('filtrados');
+        $total = Session::get('total');
 
-        $pdf = PDF::loadView('admin.pdf', compact('usuario', 'trabajos' ,'meses'))->setPaper('a4', 'portrait');
+        $pdf = PDF::loadView('admin.pdf', compact('usuario', 'trabajos' ,'meses', 'total'))->setPaper('a4', 'portrait');
 
         $fileName = $usuario->name;
 
