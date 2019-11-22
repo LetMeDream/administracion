@@ -22,7 +22,7 @@ $(document).ready(function(){
     });
 
     /** Sumando columnas
-     * Aunque ya esa funcionalidad no se usa.
+     * Aunque ya esta funcionalidad no se usa (desde acá)
     */
     $(document).on('click', '#sumar', function(){
 
