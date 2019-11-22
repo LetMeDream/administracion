@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://52.14.209.9/ssn/LET/administracion/public'),
 
     'asset_url' => env('ASSET_URL', null),
 
