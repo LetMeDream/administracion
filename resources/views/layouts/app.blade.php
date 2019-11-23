@@ -51,10 +51,10 @@
                             @endif --}}
                         @else
                             <li class='nav-item'>
-                                <a href='/home' class='nav-link'> Inicio </a>
+                                <a href='home' class='nav-link'> Inicio </a>
                             </li>
                             <li class='nav-item'>
-                                <a href='/trabajos' class='nav-link'> Trabajos </a>
+                                <a href='trabajos' class='nav-link'> Trabajos </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
