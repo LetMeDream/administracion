@@ -51,10 +51,10 @@
                             @endif --}}
                         @else
                             <li class='nav-item'>
-                                <a href='home' class='nav-link'> Inicio </a>
+                                <a href='/home' class='nav-link'> Inicio </a>
                             </li>
                             <li class='nav-item'>
-                                <a href='trabajos' class='nav-link'> Trabajos </a>
+                                <a href='/trabajos' class='nav-link'> Trabajos </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -63,8 +63,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (auth()->user()->isAdmin == 1)
-                                        <a href='register' class='dropdown-item'>Registrar Usuario</a>
-                                        <a href='usuarios' class='dropdown-item'>Usuarios</a>
+                                        <a href='/register' class='dropdown-item'>Registrar Usuario</a>
+                                        <a href='/usuarios' class='dropdown-item'>Usuarios</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

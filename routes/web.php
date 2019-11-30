@@ -26,9 +26,9 @@ Route::post('/users', 'HomeController@store');
 Route::resource('trabajos', 'TrabajoController');
 
 /** Ruta para que el admin vea todos los trabajos de los usuarios */
-Route::get('usuarios', 'AdminController@index');
+Route::get('/usuarios', 'AdminController@index');
 
-Route::get('usuarios/{usuario}', 'AdminController@show');
+Route::get('/usuarios/{usuario}', 'AdminController@show');
 
 /** Tratando de setear el Price de un trabajo específico */
 Route::post('/setPrice/{trabajoId}', 'AdminController@setPrice');

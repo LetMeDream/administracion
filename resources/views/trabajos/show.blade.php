@@ -19,10 +19,10 @@
                                 @if ($trabajo->price != null)
                                     {{$trabajo->price}}
                                 @endif <br>
-                            <label><b>Pago total: </b></label> 
+                            <label><b>Pago total: </b></label>
                                 @if ($trabajo->total != null)
                                     {{$trabajo->total}}
-                                @endif 
+                                @endif
                             <br>
                         </div>
 
@@ -44,7 +44,7 @@
                             Eliminar
                         </button>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
