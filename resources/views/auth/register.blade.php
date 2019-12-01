@@ -70,6 +70,9 @@
                             </div>
                         </div>
                     </form>
+                    @if ($errors)
+                        {{ $errors->first() }}
+                    @endif
                 </div>
             </div>
         </div>

@@ -27,6 +27,8 @@ Route::resource('trabajos', 'TrabajoController');
 
 /** Ruta para que el admin vea todos los trabajos de los usuarios */
 Route::get('/usuarios', 'AdminController@index');
+/** Ruta para eliminar alguno */
+Route::delete('usuarios/{usuario}', 'AdminController@delete')->name('admin.delete');
 
 Route::get('/usuarios/{usuario}', 'AdminController@show');
 

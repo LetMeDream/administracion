@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    public $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -38,7 +38,17 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
+
+    /** Overrriding native method */
+    public function showRegistrationForm(){
+
+        $this->authorize('register', User::class);
+        return view('auth.register');
+
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -63,10 +73,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
+        return redirect()->to($this->redirectTo);
+
     }
+
 }

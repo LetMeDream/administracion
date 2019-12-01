@@ -22,16 +22,39 @@
                                         <tbody>
                                             @foreach ($users as $user)
                                             <tr>
-                                                <th scope="row">{{$user->id}}</th>
-                                                <th>
+                                                <td scope="row">{{$user->id}}</td>
+                                                <td>
                                                     <a href='usuarios/{{$user->id}}'>{{$user->name}}</a>
-                                                </th>
-                                                <th>{{$user->email}}</th>
+                                                </td>
+                                                <td>{{$user->email}}
+
+                                                    <div class="float-right">
+                                                        <form action='{{ route("admin.delete", $user->id) }}' method='POST'>
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button onclick='confirm("¿Está seguro de eliminar el usuario?")' type='submit' class='btn btn-outline-danger'>Eliminar</button>
+                                                        </form>
+
+                                                    </div>
+
+                                                </td>
+
+
 
                                             </tr>
                                             @endforeach
                                         </tbody>
-                                    </table>
+                                </table>
+
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>{{ session('success') }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                @endif
 
                         </div>
 

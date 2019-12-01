@@ -43,7 +43,7 @@ class HomeController extends Controller
 
         $user->save();
 
-        return back();
+        return redirect('/usuarios')->with('success', 'El usuario fue agregado correctamente.');
 
     }
 }

@@ -14,9 +14,20 @@ class AdminController extends Controller
     //
 
     public function index(){
+        $this->authorize('show', User::class);
 
         $users = User::all();
         return view('admin.usuarios', compact('users'));
+
+    }
+
+    public function delete(User $usuario){
+
+        /* dd($usuario->name); */
+
+        $usuario->destroy($usuario->id);
+
+        return back()->with('success', 'Usuario eliminado existosamente');
 
     }
 
