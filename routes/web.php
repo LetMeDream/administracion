@@ -26,22 +26,22 @@ Route::post('/users', 'HomeController@store');
 Route::resource('trabajos', 'TrabajoController');
 
 /** Ruta para que el admin vea todos los trabajos de los usuarios */
-Route::get('/usuarios', 'AdminController@index');
+Route::get('/usuarios', 'AdminController@index')->name('usuarios.index');
 /** Ruta para eliminar alguno */
 Route::delete('usuarios/{usuario}', 'AdminController@delete')->name('admin.delete');
 
-Route::get('/usuarios/{usuario}', 'AdminController@show');
+Route::get('/usuarios/{usuario}', 'AdminController@show')->name('usuarios.show');
 
 /** Tratando de setear el Price de un trabajo específico */
-Route::post('/setPrice/{trabajoId}', 'AdminController@setPrice');
+Route::post('/setPrice/{trabajoId}', 'AdminController@setPrice')->name('setPrice');
 
 /** Updateando información de trabajos de otros usuarios */
-Route::get('/usuarios/{usuario}/trabajo/{trabajo}/edit', 'AdminController@editJob');
+Route::get('/usuarios/{usuario}/trabajo/{trabajo}/edit', 'AdminController@editJob')->name('editar');
 /** Patching it */
-Route::patch('/usuarios/{usuario}/trabajo/{trabajo}', 'AdminController@updateJob');
+Route::patch('/usuarios/{usuario}/trabajo/{trabajo}', 'AdminController@updateJob')->name('editado');
 
 /** Filtering */
 Route::get('/usuarios/{usuario}/filtro', 'AdminController@filter');
 
 /** Failing at pdf */
-Route::get('/usuarios/{usuario}/pdf','AdminController@export_pdf');
+Route::get('/usuarios/{usuario}/pdf','AdminController@export_pdf')->name('toPdf');

@@ -24,7 +24,7 @@
                                             <tr>
                                                 <td scope="row">{{$user->id}}</td>
                                                 <td>
-                                                    <a href='usuarios/{{$user->id}}'>{{$user->name}}</a>
+                                                    <a href='{{ route("usuarios.show", $user->id) }}'  {{-- href='usuarios/{{$user->id}}' --}}>{{$user->name}}</a>
                                                 </td>
                                                 <td>{{$user->email}}
 

@@ -93,7 +93,7 @@
                                             <td>{{$trabajo->duration}}</td>
                                             <td class='valores'>
                                                 @if ($trabajo->price == null)
-                                                    <form action='/setPrice/{{$trabajo->id}}' method='POST'>
+                                                    <form action='{{ route("setPrice", $trabajo->id) }}' {{-- action='/setPrice/{{$trabajo->id}}' --}} method='POST'>
                                                         @csrf
                                                         <input name='price' id='price' class='form-control' type='number' class='myInput'>
                                                         {{-- <input type="submit" id="submit-form" hidden /> --}}
@@ -112,7 +112,8 @@
                                                 @else
                                                 <div style='position:relative;'>
                                                     <p> ¡Precio Asignado! </p>
-                                                    <a class='editar' href='/usuarios/{{$usuario->id}}/trabajo/{{$trabajo->id}}/edit'> Editar </a>
+                                                    <a class='editar'  href="{{ route('editar', [$usuario->id, $trabajo->id]) }}"
+                                                    {{-- href='/usuarios/{{$usuario->id}}/trabajo/{{$trabajo->id}}/edit' --}}> Editar </a>
                                                 </div>
                                                 @endif
 
@@ -141,7 +142,8 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                <a class='btn btn-secondary pdf' href='{{ url('usuarios/'. $usuario->id . '/pdf') }}'>Exportar a PDF</a>
+                                                <a class='btn btn-secondary pdf'  href='{{ route("toPdf", $usuario->id) }}'
+                                                {{-- href='{{ url('usuarios/'. $usuario->id . '/pdf') }}' --}}>Exportar a PDF</a>
                                             </th>
                                             <th></th>
                                             <th></th><th></th>

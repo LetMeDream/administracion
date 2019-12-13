@@ -8,7 +8,8 @@
 
                 <div class="card-body">
 
-                        <form method="POST" action='/usuarios/{{$usuario->id}}/trabajo/{{$trabajo->id}}'>
+                        <form method="POST" action=' {{ route("editado", [$usuario->id, $trabajo->id]) }} '
+                        {{-- action='/usuarios/{{$usuario->id}}/trabajo/{{$trabajo->id}}' --}}>
                             @method('patch')
                             @csrf
 
